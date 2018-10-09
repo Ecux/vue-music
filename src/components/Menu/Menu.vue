@@ -5,7 +5,7 @@
           <div class="app-content">
             <div class="menu-detail">
               <div class="menu-userInfo">
-                <img width="56" height="56" class="avatar" :src="info.avatar">
+                <img width="56" height="56" class="avatar" :src="info.avatar?info.avatar:def">
                 <div class="user-detail">
                   <span class="name" v-text="info.name"></span>
                 </div>
@@ -17,10 +17,17 @@
             </div>
             <div class="menu-footer">
               <p class="border-1"></p>
-              <div class="exit">
+              <div class="menu-footer">
+              <p class="border-1"></p>
+              <div class="exit" v-if="!info.name">
+                <i class="el-icon-info"></i>
+                <span>登录</span>
+              </div>
+              <div class="exit" v-if="info.name">
                 <i class="el-icon-error"></i>
                 <span>退出</span>
               </div>
+            </div>
             </div>
           </div>
       </div>
@@ -49,7 +56,8 @@ export default {
   },
   data () {
     return {
-      menuShow: false
+      menuShow: false,
+      def: 'http://p.qlogo.cn/bizmail/ZFsJazyKczicwoehGGoKmPLZDwj99or8jFkCK50OOn5UyuzMNLlQSsA/0'
     }
   },
   methods: {
